@@ -14,10 +14,10 @@ import javax.validation.Valid;
 @RequestMapping ("/api/auth")
 public class AuthenticationController {
 
-    private final String testToken = "uifkrywuiyfs1243sds3453SDbnf";
+    private final String testToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
 
     //TODO add proper jwt authentication
-    @PostMapping("/login")
+    @PostMapping ("/login")
     public ResponseEntity<String> login(@RequestBody @Valid UserCredentials userCredentials) {
         if (!(userCredentials.getUsername().equals("test") && userCredentials.getPassword().equals("qwerty123"))) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

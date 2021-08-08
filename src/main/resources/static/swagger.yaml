@@ -1,0 +1,46 @@
+openapi: 3.0.0
+info:
+  description: "Documentation for MotoOto api"
+  version: "1.0.0"
+  title: "MotoOto"
+# host: "localhost:8080"
+# basePath: "/api"
+tags:
+  - name: "auth"
+    description: "auth endpoints"
+paths:
+  /auth/login:
+    post:
+      tags:
+        - "auth"
+      requestBody:
+        description: "User credentials"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserCredentials"
+      responses:
+        '200':
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+        '401':
+          description: "Unauthorized"
+components:
+  schemas:
+    UserCredentials:
+      type: "object"
+      properties:
+        username:
+          type: "string"
+          example: "testuser"
+        password:
+          type: "string"
+          example: "qwerty123"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
