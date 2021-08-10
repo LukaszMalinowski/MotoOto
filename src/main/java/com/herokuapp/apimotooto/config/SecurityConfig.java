@@ -8,6 +8,7 @@ import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -46,6 +47,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .passwordEncoder(getPasswordEncoder());
     }
 
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/swagger-ui/**", "/v3/api-docs/**");
+    }
+
     @Bean
     protected CorsConfigurationSource corsConfigurationSource() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -65,6 +71,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/swagger-ui/**").permitAll()
             .antMatchers("/swagger-resources/**").permitAll()
             .antMatchers("/docs").permitAll()
+            .antMatchers("/swagger.yaml").permitAll()
             .anyRequest().authenticated()
             .and().cors().configurationSource(corsConfigurationSource())
             .and().csrf().disable();
