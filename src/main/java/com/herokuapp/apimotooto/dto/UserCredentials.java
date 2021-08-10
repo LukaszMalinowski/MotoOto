@@ -11,7 +11,7 @@ public class UserCredentials {
 
     @NotBlank(message = "Username is mandatory")
     @NotNull(message = "Username is mandatory")
-    private String username;
+    private String email;
 
     @Size (min = 8, max = 128)
     @NotBlank(message = "Password is mandatory")
