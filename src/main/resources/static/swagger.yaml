@@ -37,7 +37,7 @@ components:
       properties:
         username:
           type: "string"
-          example: "testuser"
+          example: "test@user.com"
         password:
           type: "string"
           example: "qwerty123"
