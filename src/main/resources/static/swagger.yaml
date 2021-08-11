@@ -33,7 +33,7 @@ paths:
   /auth/register:
     post:
       tags:
-        - "auth"
+        - auth
       requestBody:
         description: Registration details
         required: true
