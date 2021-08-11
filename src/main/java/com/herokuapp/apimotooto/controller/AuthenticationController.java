@@ -1,7 +1,9 @@
 package com.herokuapp.apimotooto.controller;
 
 import com.herokuapp.apimotooto.dto.UserCredentials;
+import com.herokuapp.apimotooto.dto.UserDto;
 import com.herokuapp.apimotooto.model.User;
+import com.herokuapp.apimotooto.service.UserService;
 import com.herokuapp.apimotooto.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +28,7 @@ public class AuthenticationController {
 
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
+    private final UserService userService;
 
     @PostMapping ("/login")
     public ResponseEntity<String> login(@RequestBody @Valid UserCredentials userCredentials) {
@@ -43,6 +46,13 @@ public class AuthenticationController {
             log.info(userCredentials.getEmail() + " entered bad credentials");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
+    }
+
+    @PostMapping ("/register")
+    public ResponseEntity<String> register(@RequestBody @Valid UserDto userDto) {
+        userService.registerUser(userDto);
+
+        return login(new UserCredentials(userDto.getEmail(), userDto.getPassword()));
     }
 
 }
