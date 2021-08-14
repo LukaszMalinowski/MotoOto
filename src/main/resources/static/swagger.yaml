@@ -21,14 +21,21 @@ paths:
             schema:
               $ref: "#/components/schemas/UserCredentials"
       responses:
-        '200':
+        200:
           description: Success
           content:
             application/json:
               schema:
                 type: string
                 example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-        '401':
+        400:
+          description: Bad request - propably data wasn't validated
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Email not valid
+        401:
           description: Unauthorized
   /auth/register:
     post:
@@ -42,14 +49,21 @@ paths:
             schema:
               $ref: "#/components/schemas/UserDto"
       responses:
-        '200':
+        200:
           description: Success
           content:
             application/json:
               schema:
                 type: string
                 example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-        '409':
+        400:
+          description: Bad request - propably data wasn't validated
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Email not valid
+        409:
           description: User already exists
 components:
   schemas:
