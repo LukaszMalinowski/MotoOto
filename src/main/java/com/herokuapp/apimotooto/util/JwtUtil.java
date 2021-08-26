@@ -23,14 +23,12 @@ public class JwtUtil {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         calendar.add(Calendar.HOUR_OF_DAY, 6);
-        Date expiresDate = calendar.getTime();
 
         return JWT.create()
                   .withClaim(ID, user.getId())
                   .withClaim(EMAIL, user.getEmail())
                   .withClaim(USERNAME, user.getUsername())
                   .withIssuedAt(new Date())
-                  .withExpiresAt(expiresDate)
                   .sign(Algorithm.HMAC512(secret));
     }
 }
