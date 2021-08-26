@@ -48,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
+    public void configure(WebSecurity web) {
         web.ignoring().antMatchers("/swagger-ui/**", "/v3/api-docs/**");
     }
 
@@ -72,6 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/swagger-resources/**").permitAll()
             .antMatchers("/docs").permitAll()
             .antMatchers("/swagger.yaml").permitAll()
+            .antMatchers("/api/cars/**").permitAll()
             .anyRequest().authenticated()
             .and().cors().configurationSource(corsConfigurationSource())
             .and().csrf().disable();
