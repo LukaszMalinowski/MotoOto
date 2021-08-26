@@ -13,4 +13,8 @@ public interface CarRepository extends JpaRepository<Car, Long> {
     @Query ("select distinct c.brand from Car c")
     List<String> findDistinctBrand();
 
+    @Query ("select distinct c.model from Car c where upper(c.brand) = upper(:brand)")
+    List<String> findDistinctModelsByBrand(String brand);
+
+    boolean existsByBrandIgnoreCase(String brand);
 }
