@@ -88,3 +88,33 @@ components:
         password:
           type: string
           example: qwerty123
+    Car:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        brand:
+          type: string
+          example: Volkswagen
+        model:
+          type: string
+          example: Golf
+        generation:
+          type: string
+          example: IV
+        fuelType:
+          type: string
+          example: Diesel
+        productionYear:
+          type: integer
+          example: 2003
+        carMilage:
+          type: number
+          example: 25000.00
+        imageURL:
+          type: string
+          example: https://i.imgur.com/9SRjcNI.jpeg
+        price:
+          type: number
+          example: 5000.00
