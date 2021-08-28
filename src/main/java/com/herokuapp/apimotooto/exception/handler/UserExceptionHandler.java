@@ -1,6 +1,7 @@
 package com.herokuapp.apimotooto.exception.handler;
 
 import com.herokuapp.apimotooto.exception.UserAlreadyExistsException;
+import com.herokuapp.apimotooto.exception.UserNotExistsException;
 import com.herokuapp.apimotooto.exception.UserNotPermittedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,11 @@ public class UserExceptionHandler {
     @ExceptionHandler (value = UserNotPermittedException.class)
     public ResponseEntity<Object> handleUserNotPermittedException(UserNotPermittedException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler (value = UserNotExistsException.class)
+    public ResponseEntity<Object> handleUserNotExistsException(UserNotExistsException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
 
 }
