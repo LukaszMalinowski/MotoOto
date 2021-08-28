@@ -3,6 +3,7 @@ package com.herokuapp.apimotooto.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -73,7 +74,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/docs").permitAll()
             .antMatchers("/swagger.yaml").permitAll()
             .antMatchers("/api/cars/**").permitAll()
-            .antMatchers("/api/users/*/sale-announcements").permitAll()
+            .antMatchers(HttpMethod.GET, "/api/users/*/sale-announcements").permitAll()
             .anyRequest().authenticated()
             .and().cors().configurationSource(corsConfigurationSource())
             .and().csrf().disable();

@@ -1,9 +1,10 @@
 package com.herokuapp.apimotooto.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -16,7 +17,8 @@ import java.util.Collections;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class User implements UserDetails {
@@ -32,22 +34,20 @@ public class User implements UserDetails {
     @NotBlank (message = "Username is mandatory")
     private String email;
 
-    @JsonIgnore
     @Size (min = 8, max = 128)
     @NotBlank (message = "Password is mandatory")
     private String password;
 
+    @JsonManagedReference
     @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "owner")
     private Set<SaleAnnouncement> saleAnnouncements;
 
     @Override
-    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.emptyList();
     }
 
     @Override
-    @JsonIgnore
     public String getPassword() {
         return password;
     }
@@ -58,25 +58,21 @@ public class User implements UserDetails {
     }
 
     @Override
-    @JsonIgnore
     public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
-    @JsonIgnore
     public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
-    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
-    @JsonIgnore
     public boolean isEnabled() {
         return true;
     }

@@ -13,11 +13,11 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 public class UserCredentials {
 
-    @NotBlank(message = "Username is mandatory")
-    @NotNull(message = "Username is mandatory")
+    @NotBlank (message = "Username is mandatory")
+    @NotNull (message = "Username is mandatory")
     private String email;
 
     @Size (min = 8, max = 128)
-    @NotBlank(message = "Password is mandatory")
+    @NotBlank (message = "Password is mandatory")
     private String password;
 }
