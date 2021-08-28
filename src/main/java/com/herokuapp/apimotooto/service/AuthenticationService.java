@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Collections;
 
 @Service
 @Slf4j
@@ -48,7 +49,8 @@ public class AuthenticationService {
         User user = new User(null,
                              userDto.getUsername(),
                              userDto.getEmail(),
-                             passwordEncoder.encode(userDto.getPassword()));
+                             passwordEncoder.encode(userDto.getPassword()),
+                             Collections.emptySet());
 
         userRepository.save(user);
         log.debug("User with email " + user.getEmail() + " registered");

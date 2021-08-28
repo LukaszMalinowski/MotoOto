@@ -1,20 +1,19 @@
 package com.herokuapp.apimotooto.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Set;
 
 @Entity
 @Data
@@ -33,16 +32,22 @@ public class User implements UserDetails {
     @NotBlank (message = "Username is mandatory")
     private String email;
 
+    @JsonIgnore
     @Size (min = 8, max = 128)
     @NotBlank (message = "Password is mandatory")
     private String password;
 
+    @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "owner")
+    private Set<SaleAnnouncement> saleAnnouncements;
+
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.emptyList();
     }
 
     @Override
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
@@ -53,21 +58,25 @@ public class User implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isEnabled() {
         return true;
     }

@@ -3,7 +3,6 @@ package com.herokuapp.apimotooto.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -33,10 +32,5 @@ public class Car {
     private int productionYear;
 
     private BigDecimal carMileage;
-
-    @URL (message = "URL not valid")
-    private String imageURL;
-
-    private BigDecimal price;
 
 }
