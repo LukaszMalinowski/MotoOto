@@ -8,9 +8,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SwaggerConfig {
     @Bean
-    SpringDocConfiguration springDocConfiguration(){
+    SpringDocConfiguration springDocConfiguration() {
         return new SpringDocConfiguration();
     }
+
     @Bean
     public SpringDocConfigProperties springDocConfigProperties() {
         return new SpringDocConfigProperties();

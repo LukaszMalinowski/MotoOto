@@ -1,16 +1,17 @@
 package com.herokuapp.apimotooto.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.URL;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Car {
@@ -34,9 +35,16 @@ public class Car {
 
     private BigDecimal carMileage;
 
-    @URL (message = "URL not valid")
-    private String imageURL;
-
-    private BigDecimal price;
-
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", generation='" + generation + '\'' +
+                ", fuelType=" + fuelType +
+                ", productionYear=" + productionYear +
+                ", carMileage=" + carMileage +
+                '}';
+    }
 }

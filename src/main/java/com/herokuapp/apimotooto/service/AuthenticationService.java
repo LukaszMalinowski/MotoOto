@@ -8,8 +8,6 @@ import com.herokuapp.apimotooto.repository.UserRepository;
 import com.herokuapp.apimotooto.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Collections;
 
 @Service
 @Slf4j
@@ -48,10 +47,11 @@ public class AuthenticationService {
         User user = new User(null,
                              userDto.getUsername(),
                              userDto.getEmail(),
-                             passwordEncoder.encode(userDto.getPassword()));
+                             passwordEncoder.encode(userDto.getPassword()),
+                             Collections.emptySet());
 
         userRepository.save(user);
-        log.debug("User with email " + user.getEmail() + " registered");
+        log.info("User with email " + user.getEmail() + " registered");
     }
 
     private boolean userExists(String email) {
