@@ -27,6 +27,7 @@ public class UserService {
             throw new UserNotExistsException(userId);
         }
 
+        log.info("Getting all sale announcements for user with id " + userId);
         return saleAnnouncementRepository.findSaleAnnouncementByOwner_Id(userId);
     }
 
@@ -38,5 +39,7 @@ public class UserService {
 
         SaleAnnouncement saleAnnouncement = new SaleAnnouncement(saleAnnouncementDto, user);
         saleAnnouncementRepository.save(saleAnnouncement);
+
+        log.info("Sale announcement added: " + saleAnnouncement);
     }
 }

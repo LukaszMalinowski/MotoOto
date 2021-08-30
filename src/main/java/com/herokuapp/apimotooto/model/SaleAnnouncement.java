@@ -40,4 +40,15 @@ public class SaleAnnouncement {
         this.price = saleAnnouncementDto.getPrice();
         this.owner = user;
     }
+
+    @Override
+    public String toString() {
+        return "SaleAnnouncement{" +
+                "id=" + id +
+                ", owner=" + owner.getEmail() +
+                ", car=" + car +
+                ", imageURL='" + imageURL + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }

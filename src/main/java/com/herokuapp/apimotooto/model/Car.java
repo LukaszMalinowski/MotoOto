@@ -35,4 +35,16 @@ public class Car {
 
     private BigDecimal carMileage;
 
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", generation='" + generation + '\'' +
+                ", fuelType=" + fuelType +
+                ", productionYear=" + productionYear +
+                ", carMileage=" + carMileage +
+                '}';
+    }
 }

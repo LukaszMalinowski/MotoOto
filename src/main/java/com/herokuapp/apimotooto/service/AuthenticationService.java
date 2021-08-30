@@ -51,7 +51,7 @@ public class AuthenticationService {
                              Collections.emptySet());
 
         userRepository.save(user);
-        log.debug("User with email " + user.getEmail() + " registered");
+        log.info("User with email " + user.getEmail() + " registered");
     }
 
     private boolean userExists(String email) {
