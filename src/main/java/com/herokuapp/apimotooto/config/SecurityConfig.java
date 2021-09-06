@@ -75,6 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/swagger.yaml").permitAll()
             .antMatchers("/api/cars/**").permitAll()
             .antMatchers(HttpMethod.GET, "/api/users/*/sale-announcements").permitAll()
+            .antMatchers("/api/sale-announcements").permitAll()
             .anyRequest().authenticated()
             .and().cors().configurationSource(corsConfigurationSource())
             .and().csrf().disable();
