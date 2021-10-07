@@ -31,7 +31,7 @@ public class Car {
     @Enumerated (value = EnumType.STRING)
     private FuelType fuelType;
 
-    private int productionYear;
+    private Integer productionYear;
 
     private BigDecimal carMileage;
 

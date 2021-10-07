@@ -1,8 +1,10 @@
 package com.herokuapp.apimotooto.service;
 
 import com.herokuapp.apimotooto.dto.SaleAnnouncementDto;
+import com.herokuapp.apimotooto.exception.AnnouncementAlreadyExistsException;
 import com.herokuapp.apimotooto.exception.UserNotExistsException;
 import com.herokuapp.apimotooto.exception.UserNotPermittedException;
+import com.herokuapp.apimotooto.model.Car;
 import com.herokuapp.apimotooto.model.SaleAnnouncement;
 import com.herokuapp.apimotooto.model.User;
 import com.herokuapp.apimotooto.repository.SaleAnnouncementRepository;
@@ -38,6 +40,13 @@ public class UserService {
         }
 
         SaleAnnouncement saleAnnouncement = new SaleAnnouncement(saleAnnouncementDto, user);
+
+        Car newCar = saleAnnouncementDto.getCar();
+        if (saleAnnouncementRepository
+                .existsByCar_BrandAndCar_ModelAndOwner_Id(newCar.getBrand(), newCar.getModel(), userId)) {
+            throw new AnnouncementAlreadyExistsException();
+        }
+
         saleAnnouncementRepository.save(saleAnnouncement);
 
         log.info("Sale announcement added: " + saleAnnouncement);
