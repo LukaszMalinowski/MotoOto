@@ -15,5 +15,7 @@ public interface SaleAnnouncementRepository extends JpaRepository<SaleAnnounceme
     List<SaleAnnouncement> findAllFilteredByCar(String brand, String model, String generation, String fuel);
 
     boolean existsByCar_BrandAndCar_ModelAndOwner_Id(String brand, String model, Long userId);
+
+    long countSaleAnnouncementsByOwner_Id(Long userId);
 }
 
